@@ -2,11 +2,7 @@ package com.teampj.physicheck.common.entity;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
 
@@ -14,12 +10,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-@Entity
-@Data
+@Entity // DB 테이블 매핑
+@Data // lombok(getter, setter, toString, @NotNull 지정된 변수만 생성자 자동 생성)
 @NoArgsConstructor
 public class Member {
 
-    @Id
+    @Id // pk 선언
     @SequenceGenerator(sequenceName = "member_seq", name = "member_seq_generator", initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
     private int memberNo;

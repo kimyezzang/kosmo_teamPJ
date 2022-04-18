@@ -9,6 +9,7 @@
 
 <!-- js -->
 <script src="${path}/resources/js/customerJS/join.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
@@ -21,7 +22,7 @@
        	  	.replace(/[^0-9]/g, '')
        	  	.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
    		};
-    </script>
+</script>
 </head>
 <body>
     <div class="wrapper">
@@ -44,16 +45,17 @@
 			</div>
 
 			<div class="container">
-		 		<form class="needs-validation" action="${path}/join-action" method="post" novalidate>
+		 		<form class="needs-validation" name="joinform" action="${path}/joinAction" method="post" novalidate>
 		 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-          			<div class="row g-3">
+					<input type="hidden" name="hiddenId" value="0">
+					<div class="row g-3">
             			<div class="col-sm-9">
 			              <label for="id" class="form-label">* 아이디</label>
 			              <input type="text" name="id" id="id" size="15" placeholder="공백없이 20자 이내로 작성" class="form-control" autofocus>
 			           </div>
 			           <div class="col-sm-3">
 			           	  <label class="form-label"><br></label>
-			              <input type="button" name="dupChk "value="중복확인" class="btn btn-primary btn-block">
+			              <input type="button" name="dupChk "value="중복확인" class="btn btn-primary btn-block" onclick="confirmId()">
 			           	  <br>
 			           </div>
 
@@ -134,8 +136,12 @@
 
 			           <div class="col-12">
 			            <label for="name" class="form-label">* 주소</label>
-			            <input type="text" id="address" name="address" size="60" placeholder="주소를 입력하세요." class="form-control">
-			           	<br>
+					   	<br>
+						   <input type="text" id="postcode" placeholder="우편번호">
+						   <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+						   <input type="text" id="address" name="address" size="84" placeholder="주소" style="margin-top: 5px"><br>
+						   <input type="text" id="detailAddress" name="detailAddress" size="40" placeholder="상세주소" style="margin-top: 5px">
+						   <input type="text" id="extraAddress" name="extraAddress" size="40" placeholder="참고항목" style="margin-top: 5px">
 			          </div>
 					</div>
 		          <hr class="my-4">

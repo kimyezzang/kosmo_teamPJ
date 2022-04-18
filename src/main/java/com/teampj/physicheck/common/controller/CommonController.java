@@ -42,17 +42,24 @@ public class CommonController {
 		return "common/join";
 	}
 
-	@PostMapping("join-action")
-	public String joinAction(JoinRequest request) {
+	@PostMapping("joinAction")
+	public String joinAction(JoinRequest request, Model model) {
 		logger.info("[url ==> joinAction]C_con");
 
-		int success = memberService.save(request);
+		boolean success = memberService.save(request);
 
-		if (success > 1) {
-			System.out.println("회원가입 성공 : " + success);
-		}
+		model.addAttribute("result", success);
 
 		return "common/login";
+	}
+
+	@RequestMapping("confirmIdAction")
+	public String confirmIdAction(HttpServletRequest req, Model model) {
+		logger.info("[url ==> confirmIdAction]C_con");
+
+		memberService.confirmIdAction(req, model);
+
+		return "common/confirmIdAction";
 	}
 
 }

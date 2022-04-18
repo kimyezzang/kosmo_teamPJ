@@ -25,4 +25,6 @@ public class JoinRequest {
 
 	    private String address;
 
+	    private String detailAddress;
+
 }

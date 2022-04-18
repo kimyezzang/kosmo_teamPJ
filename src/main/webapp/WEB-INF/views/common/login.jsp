@@ -21,6 +21,23 @@
 </script>
 </head>
 <body>
+	<c:if test="${result == true}">
+		<script>
+			alert("회원가입성공~~")
+		</script>
+	</c:if>
+	<c:if test="${result == false}">
+		<script>
+			alert("회원가입실패!!")
+		</script>
+	</c:if>
+
+	<c:if test="${errorMsg != null}">
+		<script>
+			alert("${errorMsg}");
+		</script>
+	</c:if>
+
     <div class="wrapper">
         <!-- laftbar start -->
 			<%@include file = "/WEB-INF/views/common/leftbar.jsp" %>
